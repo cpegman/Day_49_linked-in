@@ -8,6 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
+from data.creds import pw, user
+
 
 class New_driver2(webdriver.Chrome):
     def __init__(self, teardown=False, headless=False, implicitly_wait=20):
@@ -36,3 +38,7 @@ driver.get("https://www.linkedin.com/")
 username = driver.find_element(By.ID, "session_key")
 password = driver.find_element(By.ID, "session_password")
 sign_in = driver.find_element(By.CLASS_NAME, "sign-in-form__submit-button")
+
+username.send_keys(user)
+password.send_keys(pw)
+sign_in.click()
