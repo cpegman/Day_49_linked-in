@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-
+import time
 from data.creds import pw, user
 
 
@@ -42,3 +42,32 @@ sign_in = driver.find_element(By.CLASS_NAME, "sign-in-form__submit-button")
 username.send_keys(user)
 password.send_keys(pw)
 sign_in.click()
+
+# job_desc = input("what job")
+location = "Cincinnatti"
+
+driver.find_element(By.LINK_TEXT, "Jobs").click()
+job_search_box = driver.find_element(
+    By.CSS_SELECTOR, 'input[id*="jobs-search-box-keyword"]'
+)
+job_search_box.send_keys("python developer")
+job_search_box.send_keys(Keys.ENTER)
+
+loc_search_box = driver.find_element(
+    By.CSS_SELECTOR, 'input[id*="jobs-search-box-location"]'
+)
+loc_search_box.clear()
+time.sleep(1)
+loc_search_box.send_keys(location)
+loc_search_box.send_keys(Keys.ENTER)
+
+easy_apply_button = driver.find_element(
+    By.CSS_SELECTOR, 'button[aria-label*="Easy Apply"]'
+).click()
+search_button = driver.find_element(
+    By.CSS_SELECTOR, 'button[class*="jobs - search - box__submit"]'
+)
+search_button.click()
+
+
+search_button.click()
